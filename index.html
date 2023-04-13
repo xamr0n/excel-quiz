@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>5 Random Questions</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+  <style>body {
+    background-color: #fff;
+    font-family: Candara, sans-serif;
+    color: #333;
+  }
+  
+  .container {
+    background-color: #fff;
+    border-radius: 80px;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    max-inline-size: 550px;
+    padding: 50px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+    margin-block-end: 30px;
+    font-weight: 550;
+  }
+  
+  #question {
+    font-size: 22px;
+    margin-block-end: 25px;
+    font-weight: 550;
+  }
+  
+  #answers {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    margin: 10px;
+    text-indent: -30px;
+    padding-inline-start: 25px;
+  }
+  
+  label {
+    display: block;
+    margin-block-end: 10px;
+  }
+  
+  input[type="radio"] {
+    margin-inline-end: 10px;
+  }
+  
+  #submit {
+    margin: 30px auto;
+    font-family: Candara;
+    background-color: #fff;
+    color: #333;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 5px;
+    font-weight: 550;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
+  }
+  
+  #score {
+    color: #000;
+    font-size: 30px;
+    margin: 20px auto;
+    text-align: center;
+    padding: 20px auto;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  button {
+    font-family: Candara;
+    background-color: #eee;
+    color: #333;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 5px;
+    font-weight: 550;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
+  }
+  </style>
+  </head>
+  <body>    
+    <h1>5 Random Questions</h1>
+    <div class="container">   
+      <h1>MS Excel</h1>
+      <div id="question"></div>
+      <div id="answers"></div>
+      <button id="submit">Submit</button>
+      <div id="score"></div>
+    </div>
+    <script src="app.js"></script>
+  <script>
+    const allQuestions = [
+    {
+      question: "Some of your data in Column C is displaying as hashtags (#) because the column is too narrow. How can you widen Column C just enough to show all the data?",
+      answers: [
+        { text: "Right-click column C, select Format Cells, and then select Best-Fit.", correct: false},
+        { text: "Right-click column C and select Best-Fit.", correct: false},
+        { text: "Double-click column C.", correct: false},
+        { text: "Double-click the vertical boundary between columns C and D.", correct: true},
+      ]
+    },
+    {
+      question: "Which two functions check for the presence of numerical or nonnumerical characters in cells?",
+      answers: [
+        { text: "ISNUMBER and ISTEXT", correct: true},
+        { text: "ISNUMBER and ISALPHA", correct: false},
+        { text: "ISVALUE AND ISNUMBER", correct: false},
+        { text: "ISVALUE and ISTEXT", correct: false},
+      ]
+    },
+    {
+      question: "If cell A3 contains the text THE DEATH OF CHIVALRY, what will be the PROPER function return?",
+      answers: [
+        { text: "the death of chivalry", correct: false},
+        { text: "The death of Chivalry", correct: false},
+        { text: "THE DEATH OF CHIVALRY", correct: false},
+        { text: "The Death Of Chivalry", correct: true},
+      ]
+    },
+    {
+      question: "When editing a cell, what do you press to cycle between relative, mixed, and absolute cell references?",
+      answers: [
+        { text: "Alt+F4 (Windows) or Option+F4 (Mac)", correct: false},
+        { text: "Alt+Shift+4 (Windows) or Option+Shift+4 (Mac)", correct: false},
+        { text: "Ctrl+Shift+4 (Windows) or Command+Shift+4 (Mac)", correct: false},
+        { text: "the F4 (Windows) or Command+T (Mac)", correct: true},
+      ]
+    },
+    {
+      question: "You need to add a line chart showing a sales trends over the last 12 months and you have only a little space to work with. How can you convey the required information within a single cell?",
+      answers: [
+        { text: "Add an image of the chart to a comment.", correct: false},
+        { text: "Add a hyperlink to another worksheet that displays a chart when clicked.", correct: false},
+        { text: "Add an image of the chart to the worksheet.", correct: false},
+        { text: "Add a sparkline, a graphic that summarizes data visually within a single worksheet cell.", correct: true},
+      ]
+    },
+    {
+      question: "What is the best way to activate the Excel Help system?",
+      answers: [
+        { text: "Right-click anywhere and select Help.", correct: false},
+        { text: "Press F1 or click the Help tab in the ribbon.", correct: true},
+        { text: "Press F10.", correct: false},
+        { text: "all of these answers.", correct: false},
+      ]
+    },
+    {
+      question: "Which format will display the value 27500000 as 27.5?",
+      answers: [
+        { text: "##,###,,", correct: false},
+        { text: "###.0,,", correct: true},
+        { text: "999.9,,", correct: false},
+        { text: "###,###.0,", correct: false},
+      ]
+    },
+    {
+      question: "When using Goal Seek, you can find a target result by varying \_ at most",
+      answers: [
+        { text: "three inputs", correct: false},
+        { text: "four inputs", correct: false},
+        { text: "two inputs", correct: false},
+        { text: "one input", correct: true},
+      ]
+    },
+    {
+      question: "A cell contains the value 7.877 and you want it to display as 7.9. How can you accomplish this?",
+      answers: [
+        { text: "Use the ROUND() function.", correct: false},
+        { text: "Click the Decrease Decimal button twice.", correct: true},
+        { text: "In the cells group on the Home tab, click Format > Format Cells. Then click the Alignment tab and select Right Indent.", correct: false},
+        { text: "Click the Decrease Decimal button once.", correct: false},
+      ]
+    },
+    {
+      question: "Which custom format will make the cells in column A appear like the corresponding cells in column B?",
+      answers: [
+        { text: "MMM-YYYY", correct: false},
+        { text: "MMMM-YYYY", correct: true},
+        { text: "MMMM&"-"&YYYY", correct: false},
+        { text: "M-YYYY", correct: false},
+      ]
+    },
+    {
+      question: "Which function returns a reference to a cell (or cell range) that is a specified distance from a base cell?",
+      answers: [
+        { text: "OFFSET", correct: true},
+        { text: "VLOOKUP", correct: false},
+        { text: "INDEX", correct: false},
+        { text: "MATCH", correct: false},
+      ]
+    },
+    {
+      question: "You're working with columns whose width and font-size should not be changed. Yet the columns are too narrow to display all the text in each cell. What tool should you use to solve the problem?",
+      answers: [
+        { text: "Sparklines", correct: false},
+        { text: "Wrap Text", correct: true},
+        { text: "Fill Handle", correct: false},
+        { text: "Centered Alignment", correct: false},
+      ]
+    },
+    {
+      question: "Of the four chart types listed, which works best for summarizing time-based data?",
+      answers: [
+        { text: "pie chart", correct: false},
+        { text: "line chart", correct: true},
+        { text: "XY scatter chart", correct: false},
+        { text: "bar chart", correct: false},
+      ]
+    },
+    {
+      question: "To ensure shapes and other objects are an equal left-to-right distance apart, select the shapes, click Page Layout > Align, and then click \_",
+      answers: [
+        { text: "Align Middle", correct: false},
+        { text: "Distribute Horizontally", correct: false},
+        { text: "Distribute Vertically", correct: true},
+        { text: "Align Center", correct: false},
+      ]
+    },
+    {
+      question: "An organization chart, which shows the hierarchy within a company or organization, is available as \_ that is included with Excel",
+      answers: [
+        { text: "a 3D model", correct: false},
+        { text: "SmartArt", correct: true},
+        { text: "a Treemap chart", correct: false},
+        { text: "a drawing object", correct: false},
+      ]
+    },
+    {
+      question: "You want to be able to restrict values allowed in a cell and need to create a drop-down list of values from which users can choose. Which feature should you use?",
+      answers: [
+        { text: "Protect Worksheet", correct: false},
+        { text: "Conditional Formatting", correct: false},
+        { text: "Allow Users to Edit Ranges", correct: false},
+        { text: "Data Validation", correct: true},
+      ]
+    },
+    {
+      question: "To round up a value to the nearest increment of your choice, such as the next five cents, what function should you use?",
+      answers: [
+        { text: "ROUNDUP", correct: true},
+        { text: "MAX", correct: false},
+        { text: "ROUND", correct: false},
+        { text: "CEILING", correct: false},
+      ]
+    },
+    {
+      question: "Which chart type can display two different data series as a different series type within the same chart?",
+      answers: [
+        { text: "XY chart", correct: true},
+        { text: "clustered column", correct: false},
+        { text: "bubble chart", correct: false},
+        { text: "combo chart", correct: false},
+      ]
+    },
+    {
+      question: "After activating a chart, which sequence adds a trendline to the chart?",
+      answers: [
+        { text: "In the Format group, select Trendline from the Insert Shapes list.", correct: false},
+        { text: "Click outside the plot area and select Add Trendline", correct: false},
+        { text: "Click inside the plot and select Forecast.", correct: false},
+        { text: "Right-click a data series and select Add Trendline.", correct: true},
+      ]
+    },
+    {
+      question: "Which Excel add-in will help you find a target result by varying multiple inputs to a formula?",
+      answers: [
+        { text: "Goal Seek", correct: true},
+        { text: "Power Pivot", correct: false},
+        { text: "Data Analysis", correct: false},
+        { text: "Solver", correct: false},
+      ]
+    },
+    {
+      question: "What tool would you use to prevent the input in a cell of a date outside a specific range?",
+      answers: [
+        { text: "Protect Workbook", correct: false},
+        { text: "Watch Window", correct: false},
+        { text: "Data Validation", correct: true},
+        { text: "Filter", correct: false},
+      ]
+    },
+    {
+      question: "When you sort a list of numerical value into ascending or descending order, the value in the middle of the list is the \_",
+      answers: [
+        { text: "mode", correct: false},
+        { text: "modulus", correct: false},
+        { text: "average", correct: false},
+        { text: "median", correct: true},
+      ]
+    },
+    {
+      question: "Which format setting does not change the background appearance of a cell?",
+      answers: [
+        { text: "Cell style", correct: false},
+        { text: "Fill color", correct: false},
+        { text: "Pattern style", correct: false},
+        { text: "Font color", correct: true},
+      ]
+    },
+    {
+      question: "In Excel, what do most formulas begin with?",
+      answers: [
+        { text: ":", correct: false},
+        { text: "=", correct: true},
+        { text: "(", correct: false},
+        { text: "-", correct: false},
+      ]
+    },
+    {
+      question: "If you start a date series by dragging down the fill handle of a single cell that contains the date 12/1/19, what will you get?",
+      answers: [
+        { text: "a series of consecutive days following the initial date", correct: true},
+        { text: "a series of days exactly one month apart", correct: false},
+        { text: "a series of days identical to the initial date", correct: false},
+        { text: "a series of days exactly one year apart", correct: false},
+      ]
+    },
+    {
+      question: "For an IF function to check whether cell B3 contains a value between 15 and 20 inclusively, what condition should you use?",
+      answers: [
+        { text: "OR(B3=>15,B3<=20)", correct: false},
+        { text: "AND (B3>=15,B3<=20)", correct: true},
+        { text: "OR(B3>15,B3<20)", correct: false},
+        { text: "AND(B3>15, B3<20)", correct: false},
+      ]
+    },
+    {
+      question: "Which format setting does not change the background appearance of a cell?",
+      answers: [
+        { text: "Fill color", correct: false},
+        { text: "Font Color", correct: true},
+        { text: "Pattern Style", correct: false},
+        { text: "Cell Style", correct: false},
+      ]
+    },
+    {
+      question: "Cell A20 displays an orange background when its value is 5 Changing the value to 6 changes the background color to green. What type of formatting is applied to cell A20?",
+      answers: [
+        { text: "Value Formatting", correct: false},
+        { text: "Cell Style Formatting", correct: false},
+        { text: "Conditional Formatting", correct: true},
+        { text: "Tabular format", correct: false},
+      ]
+    },
+    {
+      question: "What does this formula do? =Sum(Sheet1:Sheet4!D18)",
+      answers: [
+        { text: "It adds data from cell D18 of Sheet1 and cell D18 of Sheet4", correct: false},
+        { text: "It adds data from cell A1 of Sheet1 and cell D18 of sheet4", correct: false},
+        { text: "It adds all data in the range A1:D18 in Sheet1, Sheet2, Sheet3 and Sheet4", correct: false},
+        { text: "It adds data from all D18 cells in Sheet1, Sheet2, Sheet3 and Sheet4", correct: true},
+      ]
+    },
+    {
+      question: "What is the term for an expression that is entered into a worksheet cell and begins with an equal sign?",
+      answers: [
+        { text: "function", correct: false},
+        { text: "argument", correct: false},
+        { text: "formula", correct: true},
+        { text: "contents", correct: false},
+      ]
+    },
+    {
+      question: "How does the appearance of an array formula differ from that of a standard formula?",
+      answers: [
+        { text: "In a worksheet cell, array formulas have a small blue triangle in the cell's upper-right corner.", correct: false},
+        { text: "A heavy border appears around the range that is occupied by the array formula.", correct: false},
+        { text: "In the formula bar, an array formula appears surrounded by curly brackets.", correct: true},
+        { text: "When a cell that contains an array formula is selected, range finders appear on the worksheet around the formula's precedent cells.", correct: false},
+      ]
+    },
+    {
+      question: "In a worksheet, column A contains employee last names, column B contains their middle initials (if any), and column C contains their first names. Which tool can combine the last names, initials, and f",
+      answers: [
+        { text: "Concatenation", correct: true},
+        { text: "Columns to Text", correct: false},
+        { text: "Flash Fill", correct: false},
+        { text: "AutoFill", correct: false},
+      ]
+    },
+    {
+      question: "Which formula returns the value in cell A10 of the worksheet named Budget Variances?",
+      answers: [
+        { text: "='Budget Variances'!A10", correct: true},
+        { text: "=Budget Variances!A10", correct: false},
+        { text: "BudgetVariances!A10", correct: false},
+        { text: "=BudgetVariances!A10", correct: false},
+      ]
+    },
+    {
+      question: "You select cell A1, hover the pointer over the cell border to reveal the move icon, then drag the cell to a new location. Which ribbon commands achieve the same result?",
+      answers: [
+        { text: "Cut and Fill", correct: false},
+        { text: "Cut and Paste", correct: true},
+        { text: "Copy and Transpose", correct: false},
+        { text: "Copy and Paste", correct: false},
+      ]
+    },
+    {
+      question: "The NOW() function returns the current date and time as 43740.665218. Which part of this value indicates the time?",
+      answers: [
+        { text: "6652", correct: false},
+        { text: "43740.665218", correct: false},
+        { text: "43740", correct: false},
+        { text: "665218", correct: true},
+      ]
+    },
+    {
+      question: "Cell A2 contains the value 8 and cell B2 contains the value 9 What happens when cells A2 and B2 are merged and then unmerged?",
+      answers: [
+        { text: "Both values are lost.", correct: false},
+        { text: "Cell A2 contains the value 8 and cell B2 is empty.", correct: true},
+        { text: "Cell A2 contains the value 8 and cell B2 contains the value 9", correct: false},
+        { text: "Cell A2 contains the value 17 and cell B2 is empty.", correct: false},
+      ]
+    },
+    {
+      question: "In the formula `=VLOOKUP(A1,D1:H30,3,FALSE)`, the lookup value (A1) is being looked for in **\_**",
+      answers: [
+        { text: "column D", correct: false},
+        { text: "columns D through H", correct: true},
+        { text: "column H", correct: false},
+        { text: "column F", correct: false},
+      ]
+    },
+    {
+      question: "An .xlsx workbook is saved into .csv format. What is preserved in the new .csv file?",
+      answers: [
+        { text: "cell values only", correct: true},
+        { text: "cell values and formats", correct: false},
+        { text: "cell values and formulas", correct: false},
+        { text: "cell value, formats, and formulas", correct: false},
+      ]
+    },
+    {
+      question: "If a worksheet has the value 27 in cell B3, what value is returned by the function =MOD(B3,6)?",
+      answers: [
+        { text: "4", correct: false},
+        { text: "1", correct: false},
+        { text: "5", correct: false},
+        { text: "3", correct: true},
+      ]
+    },
+    {
+      question: "From which field list was the pivotTalble created?",
+      answers: [
+        { text: "rows:event, donor / values: Sum of amount", correct: false},
+        { text: "columns: event / row:donor / values: Sum of amount", correct: false},
+        { text: "rows:donor, event / values: Sum of amount", correct: true},
+        { text: "filter: event / row:donor / values: Sum of amount", correct: false},
+      ]
+    },
+    {
+      question: "In the worksheet shown below, cell C6 contains the formula=VLOOKUP(A6,$F$2:$G$10,2,FALSE). What is the most likely reason that #N/A is returned in cell `C6` instead of mallorys ID (2H54)`",
+      answers: [
+        { text: "The absolute/relative cell references in the formula are wrong", correct: false},
+        { text: "Cell A6 is not actualy text its a formula that need to be copied and pasted as a value", correct: false},
+        { text: "Column C in the lookup range is not sorted properly", correct: false},
+        { text: "A trailing space probably exist in cell A6 or F7", correct: true},
+      ]
+    },
+    {
+      question: "What is the difference between pressing the delete key and using the clear command in the Home tab's Editing group?",
+      answers: [
+        { text: "deletes removes the entire column or row. Clear removes the content from the column or row", correct: false},
+        { text: "deletes removes formulas, values and hyperlinks. clear removes formulas, values, hyperlinks, formats, comments and notes", correct: true},
+        { text: "Delete removes the cell itself, shifting cells either up or to the left. Clear removes content and properties but does not muves cells", correct: false},
+        { text: "Delete removes formulas and values. clear removes formulas, values, hyperlinks, formats, comments and notes", correct: false},
+      ]
+    },
+    {
+      question: "What is the intersection of a worksheet row and column?",
+      answers: [
+        { text: "cell", correct: true},
+        { text: "selection", correct: false},
+        { text: "element", correct: false},
+        { text: "scalar", correct: false},
+      ]
+    },
+    {
+      question: "How can you drill down into a PivotTable to show details?",
+      answers: [
+        { text: "Select the cell into which you want to drill down, right-click, and select _Show Summary_.", correct: false},
+        { text: "Select the cell into which you want to drill down, right-click and select _Drill-down_.", correct: false},
+        { text: "Select the cell into which you want to drill down and double-click.", correct: true},
+        { text: "Select the cell into which you want to drill down, right-click and select _Show Details > Summary Page_", correct: false},
+      ]
+    },
+    {
+      question: "Which is a valid Excel formula?",
+      answers: [
+        { text: "=(A5+B5)*B7", correct: true},
+        { text: "=A3-7(B3:B5+4)", correct: false},
+        { text: "=(A5+B5)B7", correct: false},
+        { text: "=B3^[2*/3]", correct: false},
+      ]
+    },
+    {
+      question: "Columns D, E, and F are hidden in your worksheet. What is one way to unhide these columns?",
+      answers: [
+        { text: "Select column G, then right-click and select `Unhide`.", correct: false},
+        { text: "Select column C, then right-click and select `Unhide`.", correct: false},
+        { text: "On the Page Layout tab, in the `Rows` and `Columns` section, select `Unhide`.", correct: false},
+        { text: "Click and drag to select columns C and G, then right-click and select `Unhide`.", correct: true},
+      ]
+    },
+    {
+      question: "Before publishing a document, you want to identify issues that may make it difficult for people with disabilities to read. Which feature should you use?",
+      answers: [
+        { text: "Check Accessibility", correct: true},
+        { text: "Check Compatibility", correct: false},
+        { text: "Protect Document", correct: false},
+        { text: "Inspect Document", correct: false},
+      ]
+    },
+    {
+      question: "How do you remove the background of an inserted image?",
+      answers: [
+        { text: "Select the image and, on the `Picture Tools Format` tab, use the `Compress Picture` feature.", correct: false},
+        { text: "Select the image and, on the `Design` tab, use the `Format Background` feature.", correct: false},
+        { text: "On the `Drawing Tools Format` tab, select `Graphics Fill` > `Remove Background`.", correct: false},
+        { text: "Select the image and, on the `Picture Tools Format` tab, click the Remove Background button.", correct: true},
+      ]
+    },
+    {
+      question: "You want to group your slides based on their content to better organize your presentation. How would you accomplish this?",
+      answers: [
+        { text: "Create an outline in the outline view and rearrange slides.", correct: false},
+        { text: "Add a table of contents slide and link the remaining slides to it.", correct: false},
+        { text: "Add sections and move the slides into the appropriate sections.", correct: true},
+        { text: "Create custom shows and add the slides into the shows.", correct: false},
+      ]
+    },
+    {
+      question: "How do you remove everything (values, formatting, etc.) from a cell?",
+      answers: [
+        { text: "Select the cell. On the Home tab, click Clear.", correct: false},
+        { text: "Select the cell and press Delete.", correct: false},
+        { text: "Right-click the cell and select Delete.", correct: false},
+        { text: "Select the cell. On the Home tab, click Clear > Clear All.", correct: true},
+      ]
+    },
+    {
+      question: "What is the difference between a workbook and a worksheet?",
+      answers: [
+        { text: "An Excel file is a workbook. A workbook contains one or more worksheets.", correct: true},
+        { text: "Nothing-these two terms mean the same thing.", correct: false},
+        { text: "A workbook contains only data. A worksheet contains both data and formulas.", correct: false},
+        { text: "An Excel file is a worksheet. A worksheet contains one or more workbooks.", correct: false},
+      ]
+    },
+    {
+      question: "Which formula contains a valid absolute reference?",
+      answers: [
+        { text: "=B7*$G$3", correct: true},
+        { text: "`=(B7)*G3", correct: false},
+        { text: "=B7*$[G3]", correct: false},
+        { text: "=B7$*G3", correct: false},
+      ]
+    },
+    {
+      question: "Cell A1 contains the number 3 Which formula returns the text Apple?",
+      answers: [
+        { text: "=SELECT(A1, Banana, Orange, Apple, Mango)", correct: false},
+        { text: "=CHOOSE(A1, Banana, Orange, Apple, Mango)", correct: true},
+        { text: "=CHOOSE(A1,Banana,Orange,Apple,Mango)", correct: true},
+        { text: "=MATCH(A1,{Banana,Orange,Apple,Mango})", correct: false},
+      ]
+    },
+    {
+      question: "How would you search an entire workbook with **Find & Select**?",
+      answers: [
+        { text: "On the **Home** tab, click **Find & Select > Find > Options** (Windows) or **Find & Select > Find** (Mac). Change the **Within** drop-down to **Workbook**.", correct: true},
+        { text: "On the **Home** tab, click **Find & Select > Find > Options** (Windows) or **Find & Select > Find** (Mac). Change the **Look in** drop-down to **Workbook**.", correct: false},
+        { text: "On the **Home** tab, click **Find & Select > Find > Options** (Windows) or **Find & Select > Find** (Mac). Change the **Search** drop-down to **All**.", correct: false},
+        { text: "You cannot search an entire workbook - you must search the worksheets individually.", correct: false},
+      ]
+    },
+    {
+      question: "To split text across cells without using Merge & Center, click **Formt Cells**. The, on **Alignment** tab, click**\_**",
+      answers: [
+        { text: "Text control > Merge cells", correct: true},
+        { text: "Horizontal > Center across selection", correct: false},
+        { text: "Vertical > Center across selection", correct: false},
+        { text: "Data tab > Text to columns", correct: false},
+      ]
+    },
+    {
+      question: "What ribbon command on the Home tab can you use to change a cell's fill color automatically, based on the value of the cell?",
+      answers: [
+        { text: "Conditional Formatting", correct: true},
+        { text: "Format", correct: false},
+        { text: "Cell Styles", correct: false},
+        { text: "Fill", correct: false},
+      ]
+    },
+    {
+      question: "Which chart type provides the best visual display of the releationship between two numeric variables?",
+      answers: [
+        { text: "radar chart", correct: false},
+        { text: "box and whisker chart", correct: false},
+        { text: "XY scatter chart", correct: true},
+        { text: "combo chart", correct: false},
+      ]
+    },
+    {
+      question: "To ensure that a collection of shapes are evenly spaced apart from left to right, select the shapes, click Page Layout > Align, and then click **\_\_**",
+      answers: [
+        { text: "Distribute Horizontally", correct: true},
+        { text: "Align Center", correct: false},
+        { text: "Distribute Vertically", correct: false},
+        { text: "Align Middle", correct: false},
+      ]
+    },
+    {
+      question: "A file extension of .xlsm indicates what type of workbook?",
+      answers: [
+        { text: "macro-enabled workbook", correct: true},
+        { text: "XML-standard workbook", correct: false},
+        { text: "Excel 2003 workbook", correct: false},
+        { text: "workbook where macros are not allowed", correct: false},
+      ]
+    },
+    {
+      question: "How do you remove only the conditional formatting from a cell and leave all other formatting intact?",
+      answers: [
+        { text: "This is not possible-you can remove only all formatting from a cell.", correct: false},
+        { text: "Select the cell. On the Home tab, click Conditional Formatting > Clear Rules > Clear Rules from Selected Cells.", correct: true},
+        { text: "Right-click the cell and select Delete Conditional Formatting.", correct: false},
+        { text: "Right-click the cell and select Remove Conditional Formatting.", correct: false},
+      ]
+    },
+    {
+      question: "To insert a new column to the left of a specific column, right-click the header containing the column's letter and select **\_**",
+      answers: [
+        { text: "Insert Column", correct: false},
+        { text: "Paste Special", correct: false},
+        { text: "Insert Column Left", correct: false},
+        { text: "Insert", correct: true},
+      ]
+    },
+    {
+      question: "You want to find the second-largest invoice in a column containing all the invoices in a given month. What function would you use?",
+      answers: [
+        { text: "NEXT", correct: false},
+        { text: "MAX", correct: false},
+        { text: "LARGE", correct: true},
+        { text: "MATCH", correct: false},
+      ]
+    }
+  ];
+
+function getRandomQuestions(numQuestions) {
+  const questions = [];
+  const allQuestionsCopy = [...allQuestions];
+
+  for (let i = 0; i < numQuestions; i++) {
+    const index = Math.floor(Math.random() * allQuestionsCopy.length);
+    const question = allQuestionsCopy.splice(index, 1)[0];
+    questions.push(question);
+  }
+
+  return questions;
+}
+
+let quiz = getRandomQuestions(5);
+let container = document.querySelector(".container");
+let questionEl = document.getElementById("question");
+let answerEl = document.getElementById("answers");
+let submitBtn = document.getElementById("submit");
+let scoreEl = document.getElementById("score");
+let resetBtn = document.createElement("button");
+
+let currentQuestion = 0;
+let score = 0;
+
+function showQuestion(question) {
+  questionEl.innerText = question.question;
+
+  for (let i = 0; i < question.answers.length; i++) {
+    const answer = question.answers[i];
+    const label = document.createElement("label");
+    const radio = document.createElement("input");
+    radio.type = "radio";
+    radio.name = "answer";
+    radio.value = answer.text;
+    label.appendChild(radio);
+    label.appendChild(document.createTextNode(answer.text));
+    answerEl.appendChild(label);
+  }
+
+  submitBtn.style.display = "block"; // Show submit button
+}
+
+function resetQuestion() {
+  questionEl.innerText = "";
+  answerEl.innerHTML = "";
+}
+
+function showScore() {
+  let scoreText;
+  let scoreColor;
+  if (score < 3) {
+    scoreText = "FAILED";
+    scoreColor = "red";
+  } else if (score < 5) {
+    scoreText = "PASSED";
+    scoreColor = "green";
+  } else {
+    scoreText = "PERFECT. CONGRATULATIONS!";
+    scoreColor = "blue";
+  }
+  scoreEl.innerHTML = `Your score is <span style="font-size: 30px">${score}</span> out of <span style="font-size: 30px">${quiz.length}</span><br><br><span style="font-size: 50px"><span style="color: ${scoreColor}">${scoreText}</span></span>`;
+  submitBtn.style.display = "none"; // Hide submit button
+
+  resetBtn.innerText = "Reset";
+  resetBtn.addEventListener("click", () => {
+    resetQuiz();
+  });
+  container.appendChild(resetBtn);
+
+  submitBtn.style.display = "none"; // Hide submit button
+}
+
+function resetQuiz() {
+  currentQuestion = 0;
+  score = 0;
+  resetQuestion();
+  quiz = getRandomQuestions(5);
+  showQuestion(quiz[currentQuestion]);
+  resetBtn.remove();
+  scoreEl.innerText = "";
+}
+
+function submitAnswer() {
+  const selected = answerEl.querySelector("input:checked");
+  if (!selected) return;
+
+  const answer = selected.value;
+  const currentQuiz = quiz[currentQuestion];
+
+  if (answer === currentQuiz.answers.find(a => a.correct).text) {
+    score++;
+  }
+
+  currentQuestion++;
+
+  if (currentQuestion >= quiz.length) {
+    resetQuestion();
+    showScore();
+  } else {
+    resetQuestion();
+    showQuestion(quiz[currentQuestion]);
+  }
+}
+
+showQuestion(quiz[currentQuestion]);
+submitBtn.addEventListener("click", submitAnswer);
+  </script>
+</body>
+</html>
