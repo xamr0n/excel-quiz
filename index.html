@@ -5,86 +5,141 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
-  <style>body {
-    background-color: #fff;
-    font-family: Candara, sans-serif;
-    color: #333;
-  }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body {
+      background-color: #eee;
+      font-family: Candara, sans-serif;
+      color: #666;
+    }
+    
+    .card {
+      display: flex;
+      justify-content: center;
+      background-color: #eee;
+      border-radius: 80px;
+      text-shadow: inset 5px 5px 5px #fff;
+      margin: 10px auto;
+      max-inline-size: 55px;
+      padding: 10px;
+      font-weight: 550;
+      font-size: 20px;
+    }
+      
+    .container {
+      background-color: #eee;
+      border-radius: 80px;
+      text-shadow: 5px 5px 5px #fff;
+      box-shadow: -10px -5px 25px #f9f9f9,
+                   10px 10px 20px #d9d9d9;
+      margin: 50px auto;
+      max-inline-size: 550px;
+      padding: 50px;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #666;
+      margin-block-end: 30px;
+      font-weight: 550;
+      text-shadow: 2px 2px 1px rgb(255, 255, 255);
+    }
+    
+    #question {
+      font-size: 22px;
+      margin-block-end: 25px;
+      font-weight: 550;
+    }
+    
+    #answers {
+      display: flex;
+      flex-direction: column;
+      font-size: 18px;
+      margin: 10px;
+      text-indent: -30px;
+      padding-inline-start: 25px;
+    }
+    
+    label {
+      display: block;
+      margin-block-end: 10px;
+    }
+    
+    input[type="radio"] {
+      margin-inline-end: 10px;
+    }
+    
+    #submit {
+      margin: 30px auto;
+      font-family: Candara;
+      background-color: #eee;
+      color: #222;
+      border: 3px double #ddd;
+      border-radius: 10px;
+      font-size: 16px;
+      padding: 5px;
+      font-weight: 550;
+      text-shadow: 1px 1px 1px #fff;
+    }
+    
+    #submit:hover {
+      font-family: Candara;
+      background-color: #eee;
+      color: #1c6904;
+      font-size: 16px;
+      border: 3px solid #666;
+      border-radius: 10px;
+      font-weight: 550;
+      text-shadow: inset 1px 1px 1px #fff;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+     
+    #score {
+      color: #222        ;
+      font-size: 30px;
+      margin: 20px auto;
+      text-align: center;
+      padding: 20px auto;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    
+    button {
+      font-family: Candara;
+      background-color: #eee;
+      color: #333;
+      border-radius: 10px;
+      font-size: 16px;
+      padding: 5px;
+      font-weight: 550;
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3); 
+    }
   
-  .container {
-    background-color: #fff;
-    border-radius: 80px;
-    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
-    margin: 50px auto;
-    max-inline-size: 550px;
-    padding: 50px;
-  }
+    .btn {
+      border: none;
+      color: #666;
+      display: inline-block;
+      margin: 1px auto;
+      border-radius: 50%;
+      inline-size: 100px;
+      block-size: 50px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 20px;
+      cursor: pointer;
+      text-shadow: 2px 2px 1px rgb(255, 255, 255);
+    }
   
-  h1 {
-    text-align: center;
-    color: #333;
-    margin-block-end: 30px;
-    font-weight: 550;
-  }
-  
-  #question {
-    font-size: 22px;
-    margin-block-end: 25px;
-    font-weight: 550;
-  }
-  
-  #answers {
-    display: flex;
-    flex-direction: column;
-    font-size: 18px;
-    margin: 10px;
-    text-indent: -30px;
-    padding-inline-start: 25px;
-  }
-  
-  label {
-    display: block;
-    margin-block-end: 10px;
-  }
-  
-  input[type="radio"] {
-    margin-inline-end: 10px;
-  }
-  
-  #submit {
-    margin: 30px auto;
-    font-family: Candara;
-    background-color: #fff;
-    color: #333;
-    border-radius: 5px;
-    font-size: 16px;
-    padding: 5px;
-    font-weight: 550;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
-  }
-  
-  #score {
-    color: #000;
-    font-size: 30px;
-    margin: 20px auto;
-    text-align: center;
-    padding: 20px auto;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  }
-  
-  button {
-    font-family: Candara;
-    background-color: #eee;
-    color: #333;
-    border-radius: 5px;
-    font-size: 16px;
-    padding: 5px;
-    font-weight: 550;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
-  }
+      /* Darker background on mouse-over */
+    .btn:hover {
+      font-weight: 550;
+      text-shadow: 2px 2px 1px rgba(179, 192, 179, 0.9); 
+    }
   </style>
   </head>
-  <body>    
+  <body>
+    <div class="card">
+      <a href="https://xamr0n.github.io" style="color: inherit; text-decoration: none;" style="font-family: Candara" title="Home">m <i class="fa fa-home"></i> n</a>
+    </div>    
     <h1>5 Random Questions</h1>
     <div class="container">   
       <h1>MS Excel</h1>
